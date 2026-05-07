@@ -61,12 +61,12 @@ export function HeroSection() {
             <span className="text-muted-foreground">B2B · Egypt</span>
           </div>
 
-          {/* MASSIVE display headline */}
+          {/* Display headline */}
           <h1
-            className="mt-8 font-display font-semibold tracking-[-0.035em] text-foreground"
+            className="mt-8 font-display font-semibold tracking-[-0.03em] text-foreground"
             style={{
-              fontSize: "clamp(3.6rem, 11vw, 11.5rem)",
-              lineHeight: 0.86,
+              fontSize: "clamp(2.25rem, 6vw, 5.25rem)",
+              lineHeight: 0.95,
             }}
           >
             <span className="block overflow-hidden">
