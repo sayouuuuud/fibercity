@@ -15,7 +15,7 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="bg-background relative isolate flex min-h-[100svh] flex-col overflow-hidden pt-24 text-foreground"
+      className="bg-background relative isolate flex min-h-[100svh] flex-col overflow-hidden pt-20 text-foreground"
     >
       {/* aurora wash + light grid */}
       <div className="pointer-events-none absolute inset-0 bg-aurora opacity-90" />
@@ -26,29 +26,8 @@ export function HeroSection() {
         <FiberRoutes />
       </div>
 
-      {/* === Top telemetry bar === */}
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
-          <div className="flex items-center gap-3">
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
-            </span>
-            <span className="text-foreground/80">Node CAI-01 · Online</span>
-            <span className="hidden text-foreground/30 sm:inline">/</span>
-            <span className="hidden sm:inline">Lat 30.04 · Lng 31.23</span>
-          </div>
-          <div className="hidden items-center gap-3 md:flex">
-            <span>OS2 SMF · 1310/1550 nm</span>
-            <span className="text-foreground/30">/</span>
-            <span>Loss 0.18 dB/km</span>
-          </div>
-          <div className="hidden lg:block">EST. 2014 — A Decade of Light</div>
-        </div>
-      </div>
-
       {/* === Main hero === */}
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl flex-1 grid-cols-1 items-center gap-12 px-4 py-12 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:py-20">
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl flex-1 grid-cols-1 items-center gap-12 px-4 pb-12 pt-6 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:pb-20 lg:pt-10">
         {/* Left — copy */}
         <div className="lg:col-span-7">
           <div className="glass inline-flex items-center gap-2 rounded-full px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-foreground">
