@@ -72,10 +72,10 @@ export function SiteFooter() {
           <div className="folio text-background/60">
             Vol. IX · Cairo Edition · {new Date().getFullYear()}
           </div>
-          <h2 className="mt-3 font-display text-[clamp(3.5rem,11vw,11rem)] leading-[0.85] tracking-[-0.04em]">
+          <h2 className="mt-3 font-display text-[clamp(2.75rem,8vw,6rem)] font-semibold leading-[0.9] tracking-[-0.035em]">
             Fiber <span className="italic">City</span>
           </h2>
-          <p className="mt-3 font-display text-2xl italic text-background/80">
+          <p className="mt-3 max-w-xl font-display text-lg italic text-background/80 sm:text-xl">
             A journal of fiber optic infrastructure, from Cairo.
           </p>
         </div>
@@ -91,10 +91,7 @@ export function SiteFooter() {
             </p>
 
             <div className="mt-8 inline-flex items-center gap-2 border border-background/30 px-3 py-2">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
-              </span>
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
               <span className="folio text-background/85">
                 Available for new programmes
               </span>

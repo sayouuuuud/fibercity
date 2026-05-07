@@ -63,7 +63,7 @@ export function PartnersSection() {
         <div className="relative grid grid-cols-12 gap-6 lg:gap-8">
           <div className="col-span-12 lg:col-span-5">
             <div className="eyebrow text-muted-foreground">The network</div>
-            <h2 className="mt-3 font-display text-[clamp(2.2rem,5vw,4rem)] leading-[0.98] tracking-[-0.02em]">
+            <h2 className="mt-3 font-display text-[clamp(2rem,4.2vw,3.25rem)] font-semibold leading-[1.02] tracking-[-0.02em]">
               The companies we <span className="italic">build with.</span>
             </h2>
             <p className="mt-5 max-w-md text-[15px] leading-[1.7] text-foreground/75">

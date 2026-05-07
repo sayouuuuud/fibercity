@@ -47,7 +47,7 @@ export function FiberRoutes() {
           S 820 250, 980 320
           S 1160 420, ${ex} ${ey}`,
       delay: 0,
-      dur: 4.2,
+      dur: 8,
       hue: 230,
     },
     {
@@ -56,8 +56,8 @@ export function FiberRoutes() {
           C 220 320, 420 360, 620 345
           S 880 335, 1020 380
           S 1170 440, ${ex} ${ey}`,
-      delay: 0.6,
-      dur: 4.6,
+      delay: 2.2,
+      dur: 9,
       hue: 220,
     },
     {
@@ -66,8 +66,8 @@ export function FiberRoutes() {
           C 200 470, 380 450, 560 460
           S 820 470, 980 470
           S 1140 470, ${ex} ${ey}`,
-      delay: 1.2,
-      dur: 5.0,
+      delay: 4.4,
+      dur: 9.5,
       hue: 230,
     },
     {
@@ -76,26 +76,9 @@ export function FiberRoutes() {
           C 220 590, 400 570, 600 580
           S 860 600, 1020 560
           S 1170 510, ${ex} ${ey}`,
-      delay: 1.8,
-      dur: 5.4,
+      delay: 6.6,
+      dur: 10,
       hue: 200,
-    },
-    // Two extra ambient routes top/bottom for density
-    {
-      d: `M -40 90
-          C 280 100, 520 140, 760 170
-          S 1080 230, ${ex} ${ey}`,
-      delay: 2.4,
-      dur: 6.2,
-      hue: 220,
-    },
-    {
-      d: `M -40 760
-          C 260 740, 480 720, 720 700
-          S 1040 600, ${ex} ${ey}`,
-      delay: 3.0,
-      dur: 6.6,
-      hue: 230,
     },
   ]
 

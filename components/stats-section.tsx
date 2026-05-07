@@ -108,7 +108,7 @@ export function StatsSection() {
         <div className="relative grid grid-cols-12 gap-6 lg:gap-8">
           <div className="col-span-12 lg:col-span-4">
             <div className="eyebrow text-muted-foreground">By the numbers</div>
-            <h2 className="mt-3 font-display text-[clamp(2rem,4.4vw,3.4rem)] leading-[0.98] tracking-[-0.02em]">
+            <h2 className="mt-3 font-display text-[clamp(2rem,4vw,3.25rem)] font-semibold leading-[1.05] tracking-[-0.02em]">
               Ten years of <span className="italic">light</span>, in figures.
             </h2>
             <p className="mt-5 max-w-md text-[15px] leading-[1.7] text-foreground/75">
@@ -126,7 +126,7 @@ export function StatsSection() {
                 }`}
               >
                 <div className="folio italic text-accent">{s.folio}.</div>
-                <dt className="mt-1 font-display text-[clamp(3rem,7vw,5.5rem)] leading-[0.95] tracking-[-0.02em]">
+                <dt className="mt-1 font-display text-[clamp(2.5rem,5.5vw,4.5rem)] font-semibold leading-[0.95] tracking-[-0.02em]">
                   <CountUp to={s.value} suffix={s.suffix} />
                 </dt>
                 <dd className="mt-3 font-display text-base italic text-foreground/85">

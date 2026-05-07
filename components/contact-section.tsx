@@ -44,7 +44,7 @@ export function ContactSection() {
           {/* Left: letter */}
           <div className="col-span-12 lg:col-span-5">
             <div className="eyebrow text-muted-foreground">Correspond</div>
-            <h2 className="mt-3 font-display text-[clamp(2.4rem,5vw,4.2rem)] leading-[0.98] tracking-[-0.02em]">
+            <h2 className="mt-3 font-display text-[clamp(2rem,4.4vw,3.5rem)] font-semibold leading-[1.02] tracking-[-0.02em]">
               Write to <span className="italic">the desk.</span>
             </h2>
 

@@ -123,7 +123,7 @@ export function ProjectsSection() {
         <div className="grid grid-cols-12 gap-6 lg:gap-8">
           <div className="col-span-12 lg:col-span-7">
             <div className="eyebrow text-muted-foreground">Field notes</div>
-            <h2 className="mt-3 font-display text-[clamp(2.4rem,5.5vw,4.5rem)] leading-[0.98] tracking-[-0.02em]">
+            <h2 className="mt-3 font-display text-[clamp(2rem,4.4vw,3.5rem)] font-semibold leading-[1.02] tracking-[-0.02em]">
               Networks already <span className="italic">carrying</span>
               <br className="hidden md:block" /> real traffic.
             </h2>
