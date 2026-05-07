@@ -1,21 +1,29 @@
 import Link from "next/link"
 import { ArrowDown, ArrowUpRight, Activity, Radio, Waves } from "lucide-react"
-import { FiberCanvas } from "@/components/fiber-canvas"
 import { FiberEndface } from "@/components/fiber-endface"
+import { FiberRoutes } from "@/components/fiber-routes"
 
+/**
+ * Hero — light fiber-optic theme.
+ * The fiber routes (FiberRoutes) are the main visual: curved SVG paths
+ * that originate from the left edge, thread through the rows of the
+ * headline, and converge into the fiber endface on the right. Light
+ * packets travel along these paths so the headline is literally tied
+ * into the fiber lines.
+ */
 export function HeroSection() {
   return (
     <section
       id="home"
       className="bg-background relative isolate flex min-h-[100svh] flex-col overflow-hidden pt-24 text-foreground"
     >
-      {/* soft aurora wash + light grid */}
+      {/* aurora wash + light grid */}
       <div className="pointer-events-none absolute inset-0 bg-aurora opacity-90" />
       <div className="pointer-events-none absolute inset-0 bg-grid [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_75%)]" />
 
-      {/* faint flowing fiber strands across the hero */}
-      <div className="pointer-events-none absolute inset-0 [mask-image:linear-gradient(180deg,transparent,black_15%,black_85%,transparent)] opacity-90">
-        <FiberCanvas variant="light" />
+      {/* Fiber routes — paths that connect headline to endface */}
+      <div className="pointer-events-none absolute inset-0 [mask-image:linear-gradient(180deg,transparent,black_8%,black_92%,transparent)]">
+        <FiberRoutes />
       </div>
 
       {/* === Top telemetry bar === */}
@@ -40,7 +48,7 @@ export function HeroSection() {
       </div>
 
       {/* === Main hero === */}
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl flex-1 grid-cols-1 items-center gap-12 px-4 py-10 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:py-16">
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl flex-1 grid-cols-1 items-center gap-12 px-4 py-12 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:py-20">
         {/* Left — copy */}
         <div className="lg:col-span-7">
           <div className="glass inline-flex items-center gap-2 rounded-full px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-foreground">
@@ -53,17 +61,55 @@ export function HeroSection() {
             <span className="text-muted-foreground">B2B · Egypt</span>
           </div>
 
-          <h1 className="mt-7 font-display text-[14vw] font-semibold leading-[0.86] tracking-[-0.02em] text-foreground sm:text-[10vw] lg:text-[7.2rem] xl:text-[8.4rem]">
-            <span className="block">Light moves</span>
-            <span className="block">
-              <span className="italic font-light text-muted-foreground">through</span>{" "}
-              <span className="text-primary">glass.</span>
+          {/* MASSIVE display headline */}
+          <h1
+            className="mt-8 font-display font-semibold tracking-[-0.035em] text-foreground"
+            style={{
+              fontSize: "clamp(3.6rem, 11vw, 11.5rem)",
+              lineHeight: 0.86,
+            }}
+          >
+            <span className="block overflow-hidden">
+              <span className="word-rise" style={{ animationDelay: "0.05s" }}>
+                Light moves
+              </span>
             </span>
-            <span className="block">We move it</span>
-            <span className="block">across Egypt.</span>
+            <span className="block overflow-hidden">
+              <span
+                className="word-rise italic font-light text-muted-foreground"
+                style={{ animationDelay: "0.18s" }}
+              >
+                through{" "}
+              </span>
+              <span
+                className="word-rise light-sweep strand-underline"
+                style={{ animationDelay: "0.32s" }}
+              >
+                glass.
+              </span>
+            </span>
+            <span className="block overflow-hidden">
+              <span className="word-rise" style={{ animationDelay: "0.46s" }}>
+                We move it
+              </span>
+            </span>
+            <span className="block overflow-hidden">
+              <span
+                className="word-rise"
+                style={{ animationDelay: "0.6s" }}
+              >
+                across{" "}
+              </span>
+              <span
+                className="word-rise strand-underline"
+                style={{ animationDelay: "0.72s" }}
+              >
+                Egypt.
+              </span>
+            </span>
           </h1>
 
-          <p className="mt-8 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground">
+          <p className="mt-8 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
             Fiber City designs, supplies, installs and maintains optical
             networks for Egypt&apos;s most demanding telecom operators and
             enterprises. From the first site survey to the last splice — one
@@ -104,9 +150,9 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Right — fiber endface centerpiece (the only "dark" island) */}
+        {/* Right — fiber endface centerpiece (the convergence point) */}
         <div className="relative lg:col-span-5">
-          <div className="relative mx-auto aspect-square w-full max-w-[460px]">
+          <div className="relative mx-auto aspect-square w-full max-w-[460px] animate-convergence">
             {/* outer dashed rotating ring */}
             <svg
               aria-hidden="true"
@@ -124,7 +170,7 @@ export function HeroSection() {
               />
             </svg>
 
-            {/* tick marks around the rim — dark on light */}
+            {/* tick marks around the rim */}
             <svg
               aria-hidden="true"
               viewBox="0 0 100 100"
@@ -153,7 +199,7 @@ export function HeroSection() {
               })}
             </svg>
 
-            {/* the fiber endface — keep this dark since it's a real fiber view */}
+            {/* the fiber endface — kept dark since it's a true fiber view */}
             <div className="endface-ring absolute inset-[6%] overflow-hidden rounded-full">
               <FiberEndface />
               <div className="scan-line absolute inset-x-0 top-0 h-24" />
@@ -163,7 +209,7 @@ export function HeroSection() {
               </div>
             </div>
 
-            {/* corner technical readouts — dark text on light bg */}
+            {/* corner technical readouts */}
             <div className="absolute -left-2 -top-2 font-mono text-[9px] uppercase leading-tight tracking-[0.22em] text-muted-foreground">
               <div className="text-foreground">144F · OS2</div>
               <div>Single-mode</div>
