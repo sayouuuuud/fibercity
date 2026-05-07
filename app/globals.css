@@ -283,3 +283,248 @@
   );
   filter: blur(8px);
 }
+
+/* =========================================================
+   Dark hero — fiber optic atmosphere
+   ========================================================= */
+.bg-fiber-night {
+  background:
+    radial-gradient(60% 50% at 70% 40%, oklch(0.22 0.06 230 / 0.55), transparent 70%),
+    radial-gradient(45% 45% at 20% 80%, oklch(0.28 0.08 220 / 0.4), transparent 70%),
+    radial-gradient(40% 40% at 90% 90%, oklch(0.22 0.05 240 / 0.4), transparent 70%),
+    linear-gradient(180deg, oklch(0.09 0.018 250) 0%, oklch(0.07 0.015 250) 60%, oklch(0.05 0.012 250) 100%);
+}
+
+.bg-grid-dark {
+  background-image:
+    linear-gradient(to right, oklch(0.66 0.13 230 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(0.66 0.13 230 / 0.06) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Glass surface for dark hero */
+.glass-night {
+  background: oklch(1 0 0 / 0.04);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid oklch(1 0 0 / 0.1);
+  box-shadow:
+    inset 0 1px 0 0 oklch(1 0 0 / 0.08),
+    0 12px 40px -16px oklch(0 0 0 / 0.6);
+}
+
+/* Cyan glow text */
+.text-glow-cyan {
+  color: oklch(0.92 0.08 220);
+  text-shadow:
+    0 0 24px oklch(0.66 0.13 230 / 0.8),
+    0 0 48px oklch(0.66 0.13 230 / 0.4);
+}
+
+/* Subtle horizontal scan line */
+@keyframes scan-line {
+  0% { transform: translateY(-10%); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(110%); opacity: 0; }
+}
+.scan-line {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    oklch(0.78 0.16 220 / 0.55) 45%,
+    oklch(0.95 0.06 200 / 0.9) 50%,
+    oklch(0.78 0.16 220 / 0.55) 55%,
+    transparent 100%
+  );
+  filter: blur(1px);
+  animation: scan-line 6s ease-in-out infinite;
+}
+
+/* Light ray (vertical streak) */
+.ray {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    oklch(0.66 0.13 230 / 0.5) 50%,
+    transparent 100%
+  );
+  filter: blur(2px);
+}
+
+/* Glow ring for the endface */
+.endface-ring {
+  box-shadow:
+    inset 0 0 0 1px oklch(1 0 0 / 0.08),
+    0 0 0 1px oklch(0.66 0.13 230 / 0.25),
+    0 0 80px -10px oklch(0.66 0.13 230 / 0.55),
+    0 30px 100px -20px oklch(0.66 0.13 230 / 0.45);
+}
+
+/* Animated dashed border for technical readouts */
+@keyframes dash-shift {
+  to { stroke-dashoffset: -20; }
+}
+.dash-flow {
+  stroke-dasharray: 4 6;
+  animation: dash-shift 1.4s linear infinite;
+}
+
+/* Slow rotate */
+@keyframes slow-rotate {
+  to { transform: rotate(360deg); }
+}
+.animate-slow-rotate {
+  animation: slow-rotate 60s linear infinite;
+}
+
+/* Marquee for ticker */
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-ticker {
+  animation: ticker 30s linear infinite;
+}
+
+/* =========================================================
+   Hero — word reveal + light-through-text
+   ========================================================= */
+@keyframes word-rise {
+  0%   { transform: translateY(120%); opacity: 0; filter: blur(8px); }
+  60%  { opacity: 1; filter: blur(0); }
+  100% { transform: translateY(0%); opacity: 1; filter: blur(0); }
+}
+.word-rise {
+  display: inline-block;
+  animation: word-rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* Animated cyan light traveling through the highlighted word */
+@keyframes light-sweep {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.light-sweep {
+  background-image: linear-gradient(
+    100deg,
+    oklch(0.66 0.13 230) 0%,
+    oklch(0.66 0.13 230) 35%,
+    oklch(0.95 0.06 200) 50%,
+    oklch(0.66 0.13 230) 65%,
+    oklch(0.66 0.13 230) 100%
+  );
+  background-size: 200% 100%;
+  background-position: -200% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: light-sweep 4s ease-in-out 0.6s infinite;
+  text-shadow: 0 0 30px oklch(0.66 0.13 230 / 0.45);
+}
+
+/* Strand underline that runs beneath a word — a tiny SVG-style line
+   with a moving light packet implemented with a sliding gradient. */
+@keyframes underline-pulse {
+  0%   { background-position: -150% 0; }
+  100% { background-position: 250% 0; }
+}
+.strand-underline {
+  position: relative;
+}
+.strand-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.12em;
+  height: 2px;
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      oklch(0.95 0.06 200) 50%,
+      transparent 100%
+    ),
+    linear-gradient(
+      90deg,
+      oklch(0.66 0.13 230 / 0.35),
+      oklch(0.66 0.13 230 / 0.35)
+    );
+  background-size: 30% 100%, 100% 100%;
+  background-repeat: no-repeat, no-repeat;
+  background-position: -150% 0, 0 0;
+  filter: drop-shadow(0 0 6px oklch(0.66 0.13 230 / 0.6));
+  animation: underline-pulse 3s linear infinite;
+  border-radius: 2px;
+}
+
+/* Pulsing convergence ring used at the endface entry point */
+@keyframes convergence {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50%      { transform: scale(1.08); opacity: 1; }
+}
+.animate-convergence {
+  animation: convergence 3s ease-in-out infinite;
+}
+
+/* Endface entrance — scales in from 0 with a soft glow expansion */
+@keyframes endface-enter {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+    filter: blur(14px) brightness(0.4);
+  }
+  55% {
+    opacity: 1;
+    filter: blur(0) brightness(1.35);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0) brightness(1);
+  }
+}
+.animate-endface-enter {
+  animation: endface-enter 1.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s both;
+}
+
+/* Glow burst that radiates outward when the endface boots up */
+@keyframes glow-burst {
+  0%   { opacity: 0; transform: scale(0.4); }
+  35%  { opacity: 0.8; }
+  100% { opacity: 0; transform: scale(2); }
+}
+.animate-glow-burst {
+  animation: glow-burst 2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s both;
+}
+
+/* Generic content fade-up — used by hero side meta */
+@keyframes fade-up {
+  0%   { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up {
+  animation: fade-up 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* Respect reduced-motion for hero entrance animations */
+@media (prefers-reduced-motion: reduce) {
+  .animate-endface-enter,
+  .animate-glow-burst,
+  .animate-fade-up,
+  .animate-convergence,
+  .word-rise,
+  .light-sweep,
+  .strand-underline::after,
+  .dash-flow,
+  .scan-line,
+  .animate-slow-rotate,
+  .animate-marquee,
+  .animate-ticker {
+    animation: none !important;
+  }
+  .word-rise { opacity: 1 !important; transform: none !important; filter: none !important; }
+  .animate-endface-enter { opacity: 1 !important; transform: none !important; filter: none !important; }
+}
