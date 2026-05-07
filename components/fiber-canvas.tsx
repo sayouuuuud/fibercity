@@ -3,11 +3,19 @@
 import { useEffect, useRef } from "react"
 
 /**
- * Animated fiber-optic strands flowing across a light background.
- * Strands are drawn as faint dark hairlines, with cyan light "packets"
- * that travel along them — evoking light moving through glass fiber.
+ * Animated fiber-optic strands flowing across the hero. Drawn over a
+ * dark backdrop with bright cyan/teal light "packets" traveling along
+ * each strand — evokes photons racing through glass.
+ *
+ * Pass `variant="dark"` (default) to render bright strands suitable for
+ * a dark hero background. `variant="light"` keeps the original dark-on-
+ * light hairlines.
  */
-export function FiberCanvas() {
+export function FiberCanvas({
+  variant = "dark",
+}: {
+  variant?: "dark" | "light"
+}) {
   const ref = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -48,22 +56,26 @@ export function FiberCanvas() {
       canvas.height = Math.floor(height * dpr)
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
 
-      const count = Math.max(16, Math.floor(width / 55))
+      const count = Math.max(22, Math.floor(width / 38))
       strands = Array.from({ length: count }).map((_, i) => ({
         y: (i + 0.5) * (height / count) + (Math.random() - 0.5) * 14,
-        amp: 22 + Math.random() * 60,
+        amp: 28 + Math.random() * 80,
         speed: 0.0005 + Math.random() * 0.0014,
         phase: Math.random() * Math.PI * 2,
-        // dark hairlines on light bg
-        opacity: 0.05 + Math.random() * 0.08,
-        width: 0.5 + Math.random() * 0.6,
+        opacity:
+          variant === "dark"
+            ? 0.18 + Math.random() * 0.22
+            : 0.05 + Math.random() * 0.08,
+        width: 0.4 + Math.random() * 0.7,
       }))
 
-      packets = Array.from({ length: Math.floor(count * 0.7) }).map(() => ({
-        strand: Math.floor(Math.random() * count),
+      // 2-3 packets per strand for extra density
+      const perStrand = 2
+      packets = Array.from({ length: count * perStrand }).map((_, i) => ({
+        strand: i % count,
         t: Math.random(),
-        speed: 0.0014 + Math.random() * 0.0035,
-        hue: Math.random() > 0.85 ? 200 : 230,
+        speed: 0.002 + Math.random() * 0.005,
+        hue: Math.random() > 0.7 ? 200 : 230,
       }))
     }
 
@@ -79,8 +91,11 @@ export function FiberCanvas() {
         if (i === 0) ctx.moveTo(x, y)
         else ctx.lineTo(x, y)
       }
-      // dark ink hairline on light bg
-      ctx.strokeStyle = `oklch(0.18 0.025 250 / ${s.opacity})`
+      // dark or light strand depending on variant
+      ctx.strokeStyle =
+        variant === "dark"
+          ? `oklch(0.78 0.13 220 / ${s.opacity})`
+          : `oklch(0.18 0.025 250 / ${s.opacity})`
       ctx.lineWidth = s.width
       ctx.stroke()
     }
@@ -100,29 +115,43 @@ export function FiberCanvas() {
       const { x, y } = strandPoint(s, p.t, time)
 
       // Outer halo (large soft glow)
-      const halo = ctx.createRadialGradient(x, y, 0, x, y, 28)
-      halo.addColorStop(0, `oklch(0.7 0.14 ${p.hue} / 0.55)`)
-      halo.addColorStop(0.4, `oklch(0.7 0.14 ${p.hue} / 0.18)`)
+      const haloR = variant === "dark" ? 38 : 28
+      const halo = ctx.createRadialGradient(x, y, 0, x, y, haloR)
+      halo.addColorStop(0, `oklch(0.78 0.16 ${p.hue} / ${variant === "dark" ? 0.7 : 0.55})`)
+      halo.addColorStop(0.4, `oklch(0.7 0.14 ${p.hue} / ${variant === "dark" ? 0.25 : 0.18})`)
       halo.addColorStop(1, `oklch(0.7 0.14 ${p.hue} / 0)`)
       ctx.fillStyle = halo
       ctx.beginPath()
-      ctx.arc(x, y, 28, 0, Math.PI * 2)
+      ctx.arc(x, y, haloR, 0, Math.PI * 2)
       ctx.fill()
 
       // Inner glow
-      const inner = ctx.createRadialGradient(x, y, 0, x, y, 8)
-      inner.addColorStop(0, `oklch(0.95 0.1 ${p.hue} / 1)`)
+      const inner = ctx.createRadialGradient(x, y, 0, x, y, 10)
+      inner.addColorStop(0, `oklch(0.97 0.08 ${p.hue} / 1)`)
       inner.addColorStop(1, `oklch(0.7 0.14 ${p.hue} / 0)`)
       ctx.fillStyle = inner
       ctx.beginPath()
-      ctx.arc(x, y, 8, 0, Math.PI * 2)
+      ctx.arc(x, y, 10, 0, Math.PI * 2)
       ctx.fill()
 
       // Bright core
       ctx.fillStyle = `oklch(0.99 0.02 ${p.hue})`
       ctx.beginPath()
-      ctx.arc(x, y, 1.6, 0, Math.PI * 2)
+      ctx.arc(x, y, 1.8, 0, Math.PI * 2)
       ctx.fill()
+
+      // Trailing streak (a few faded segments behind the packet)
+      if (variant === "dark") {
+        for (let k = 1; k <= 6; k++) {
+          const tt = p.t - k * 0.012
+          if (tt < 0) break
+          const pt = strandPoint(s, tt, time)
+          ctx.fillStyle = `oklch(0.85 0.14 ${p.hue} / ${0.35 * (1 - k / 6)})`
+          ctx.beginPath()
+          ctx.arc(pt.x, pt.y, 1.4 * (1 - k / 7), 0, Math.PI * 2)
+          ctx.fill()
+        }
+      }
     }
 
     let last = performance.now()
@@ -156,7 +185,7 @@ export function FiberCanvas() {
       cancelAnimationFrame(raf)
       window.removeEventListener("resize", onResize)
     }
-  }, [])
+  }, [variant])
 
   return (
     <canvas

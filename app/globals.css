@@ -283,3 +283,106 @@
   );
   filter: blur(8px);
 }
+
+/* =========================================================
+   Dark hero — fiber optic atmosphere
+   ========================================================= */
+.bg-fiber-night {
+  background:
+    radial-gradient(60% 50% at 70% 40%, oklch(0.22 0.06 230 / 0.55), transparent 70%),
+    radial-gradient(45% 45% at 20% 80%, oklch(0.28 0.08 220 / 0.4), transparent 70%),
+    radial-gradient(40% 40% at 90% 90%, oklch(0.22 0.05 240 / 0.4), transparent 70%),
+    linear-gradient(180deg, oklch(0.09 0.018 250) 0%, oklch(0.07 0.015 250) 60%, oklch(0.05 0.012 250) 100%);
+}
+
+.bg-grid-dark {
+  background-image:
+    linear-gradient(to right, oklch(0.66 0.13 230 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(0.66 0.13 230 / 0.06) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Glass surface for dark hero */
+.glass-night {
+  background: oklch(1 0 0 / 0.04);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid oklch(1 0 0 / 0.1);
+  box-shadow:
+    inset 0 1px 0 0 oklch(1 0 0 / 0.08),
+    0 12px 40px -16px oklch(0 0 0 / 0.6);
+}
+
+/* Cyan glow text */
+.text-glow-cyan {
+  color: oklch(0.92 0.08 220);
+  text-shadow:
+    0 0 24px oklch(0.66 0.13 230 / 0.8),
+    0 0 48px oklch(0.66 0.13 230 / 0.4);
+}
+
+/* Subtle horizontal scan line */
+@keyframes scan-line {
+  0% { transform: translateY(-10%); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(110%); opacity: 0; }
+}
+.scan-line {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    oklch(0.78 0.16 220 / 0.55) 45%,
+    oklch(0.95 0.06 200 / 0.9) 50%,
+    oklch(0.78 0.16 220 / 0.55) 55%,
+    transparent 100%
+  );
+  filter: blur(1px);
+  animation: scan-line 6s ease-in-out infinite;
+}
+
+/* Light ray (vertical streak) */
+.ray {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    oklch(0.66 0.13 230 / 0.5) 50%,
+    transparent 100%
+  );
+  filter: blur(2px);
+}
+
+/* Glow ring for the endface */
+.endface-ring {
+  box-shadow:
+    inset 0 0 0 1px oklch(1 0 0 / 0.08),
+    0 0 0 1px oklch(0.66 0.13 230 / 0.25),
+    0 0 80px -10px oklch(0.66 0.13 230 / 0.55),
+    0 30px 100px -20px oklch(0.66 0.13 230 / 0.45);
+}
+
+/* Animated dashed border for technical readouts */
+@keyframes dash-shift {
+  to { stroke-dashoffset: -20; }
+}
+.dash-flow {
+  stroke-dasharray: 4 6;
+  animation: dash-shift 1.4s linear infinite;
+}
+
+/* Slow rotate */
+@keyframes slow-rotate {
+  to { transform: rotate(360deg); }
+}
+.animate-slow-rotate {
+  animation: slow-rotate 60s linear infinite;
+}
+
+/* Marquee for ticker */
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-ticker {
+  animation: ticker 30s linear infinite;
+}
