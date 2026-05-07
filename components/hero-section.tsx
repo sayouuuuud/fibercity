@@ -131,12 +131,24 @@ export function HeroSection() {
 
         {/* Right — fiber endface centerpiece (the convergence point) */}
         <div className="relative lg:col-span-5">
-          <div className="relative mx-auto aspect-square w-full max-w-[460px] animate-convergence">
+          <div className="relative mx-auto aspect-square w-full max-w-[460px]">
+            {/* one-shot glow burst that fires when the endface boots */}
+            <div
+              aria-hidden="true"
+              className="animate-glow-burst pointer-events-none absolute inset-0 rounded-full"
+              style={{
+                background:
+                  "radial-gradient(circle at center, oklch(0.66 0.13 230 / 0.55), transparent 65%)",
+                filter: "blur(20px)",
+              }}
+            />
+
             {/* outer dashed rotating ring */}
             <svg
               aria-hidden="true"
               viewBox="0 0 100 100"
-              className="absolute inset-0 h-full w-full animate-slow-rotate"
+              className="animate-fade-up absolute inset-0 h-full w-full animate-slow-rotate"
+              style={{ animationDelay: "0.5s" }}
             >
               <circle
                 cx="50"
@@ -153,7 +165,8 @@ export function HeroSection() {
             <svg
               aria-hidden="true"
               viewBox="0 0 100 100"
-              className="absolute inset-0 h-full w-full"
+              className="animate-fade-up absolute inset-0 h-full w-full"
+              style={{ animationDelay: "0.6s" }}
             >
               {Array.from({ length: 60 }).map((_, i) => {
                 const angle = (i / 60) * Math.PI * 2
@@ -179,7 +192,7 @@ export function HeroSection() {
             </svg>
 
             {/* the fiber endface — kept dark since it's a true fiber view */}
-            <div className="endface-ring absolute inset-[6%] overflow-hidden rounded-full">
+            <div className="animate-endface-enter endface-ring absolute inset-[6%] overflow-hidden rounded-full">
               <FiberEndface />
               <div className="scan-line absolute inset-x-0 top-0 h-24" />
               <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
@@ -189,19 +202,28 @@ export function HeroSection() {
             </div>
 
             {/* corner technical readouts */}
-            <div className="absolute -left-2 -top-2 font-mono text-[9px] uppercase leading-tight tracking-[0.22em] text-muted-foreground">
+            <div
+              className="animate-fade-up absolute -left-2 -top-2 font-mono text-[9px] uppercase leading-tight tracking-[0.22em] text-muted-foreground"
+              style={{ animationDelay: "1.1s" }}
+            >
               <div className="text-foreground">144F · OS2</div>
               <div>Single-mode</div>
               <div>9 / 125 µm</div>
             </div>
 
-            <div className="absolute -right-2 -top-2 text-right font-mono text-[9px] uppercase leading-tight tracking-[0.22em] text-muted-foreground">
+            <div
+              className="animate-fade-up absolute -right-2 -top-2 text-right font-mono text-[9px] uppercase leading-tight tracking-[0.22em] text-muted-foreground"
+              style={{ animationDelay: "1.2s" }}
+            >
               <div className="text-primary">λ 1550 nm</div>
               <div>0.18 dB/km</div>
               <div>OTDR · OK</div>
             </div>
 
-            <div className="absolute -bottom-2 left-0 right-0 flex items-end justify-between font-mono text-[9px] uppercase tracking-[0.22em] text-muted-foreground">
+            <div
+              className="animate-fade-up absolute -bottom-2 left-0 right-0 flex items-end justify-between font-mono text-[9px] uppercase tracking-[0.22em] text-muted-foreground"
+              style={{ animationDelay: "1.3s" }}
+            >
               <div>
                 <div className="text-foreground">Fig. 01</div>
                 <div>Endface · Live</div>
@@ -213,7 +235,10 @@ export function HeroSection() {
             </div>
 
             {/* floating live throughput card */}
-            <div className="glass absolute -bottom-10 left-1/2 z-10 flex -translate-x-1/2 items-center gap-3 rounded-2xl px-4 py-3 shadow-xl">
+            <div
+              className="glass animate-fade-up absolute -bottom-10 left-1/2 z-10 flex -translate-x-1/2 items-center gap-3 rounded-2xl px-4 py-3 shadow-xl"
+              style={{ animationDelay: "1.4s" }}
+            >
               <div className="glow-cyan flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-foreground">
                 <Activity className="h-4 w-4" />
               </div>

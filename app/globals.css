@@ -468,3 +468,63 @@
 .animate-convergence {
   animation: convergence 3s ease-in-out infinite;
 }
+
+/* Endface entrance — scales in from 0 with a soft glow expansion */
+@keyframes endface-enter {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+    filter: blur(14px) brightness(0.4);
+  }
+  55% {
+    opacity: 1;
+    filter: blur(0) brightness(1.35);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0) brightness(1);
+  }
+}
+.animate-endface-enter {
+  animation: endface-enter 1.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s both;
+}
+
+/* Glow burst that radiates outward when the endface boots up */
+@keyframes glow-burst {
+  0%   { opacity: 0; transform: scale(0.4); }
+  35%  { opacity: 0.8; }
+  100% { opacity: 0; transform: scale(2); }
+}
+.animate-glow-burst {
+  animation: glow-burst 2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s both;
+}
+
+/* Generic content fade-up — used by hero side meta */
+@keyframes fade-up {
+  0%   { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up {
+  animation: fade-up 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* Respect reduced-motion for hero entrance animations */
+@media (prefers-reduced-motion: reduce) {
+  .animate-endface-enter,
+  .animate-glow-burst,
+  .animate-fade-up,
+  .animate-convergence,
+  .word-rise,
+  .light-sweep,
+  .strand-underline::after,
+  .dash-flow,
+  .scan-line,
+  .animate-slow-rotate,
+  .animate-marquee,
+  .animate-ticker {
+    animation: none !important;
+  }
+  .word-rise { opacity: 1 !important; transform: none !important; filter: none !important; }
+  .animate-endface-enter { opacity: 1 !important; transform: none !important; filter: none !important; }
+}

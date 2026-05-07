@@ -21,6 +21,9 @@ export function FiberEndface() {
     let width = 0
     let height = 0
     let dpr = 1
+    // boot reveal — cores light up progressively from center outward
+    const bootStart = performance.now() + 500 // small delay so the page settles first
+    const bootDuration = 1800
 
     type Core = {
       x: number
@@ -112,14 +115,23 @@ export function FiberEndface() {
     const tick = (now: number) => {
       const time = now / 1000
 
-      // schedule new pulses
-      if (now - lastPulse > 2200) {
+      // boot reveal progress (0..1)
+      const bootElapsed = Math.max(0, now - bootStart)
+      const bootProgress = Math.min(1, bootElapsed / bootDuration)
+      // ease-out cubic
+      const bootEase = 1 - Math.pow(1 - bootProgress, 3)
+      // overall canvas fade-in
+      const canvasAlpha = Math.min(1, bootElapsed / 600)
+
+      // schedule new pulses (only after boot completes)
+      if (bootProgress >= 1 && now - lastPulse > 2200) {
         pulses.push({ t: 0, speed: 0.45 + Math.random() * 0.25 })
         lastPulse = now
       }
 
       // draw cladding (dark grey ring outside cores)
       ctx.clearRect(0, 0, width, height)
+      ctx.globalAlpha = canvasAlpha
 
       // Outer black jacket (subtle)
       const jacket = ctx.createRadialGradient(cx, cy, radius * 0.95, cx, cy, radius * 1.25)
@@ -149,9 +161,19 @@ export function FiberEndface() {
 
       // draw cores
       for (const c of cores) {
+        // boot reveal: cores light up from center outward.
+        // Each core's "lit threshold" is its normalized distance.
+        // A small overshoot/flicker is added at the moment of activation.
+        const coreThreshold = c.dist * 0.85
+        const coreReveal = Math.max(0, Math.min(1, (bootEase - coreThreshold) / 0.18))
+        if (coreReveal <= 0) continue
+
+        // brief overshoot at moment of activation
+        const justLit = coreReveal < 1 ? Math.sin(coreReveal * Math.PI) * 0.6 : 0
+
         // breathing brightness
         const breath = 0.5 + 0.5 * Math.sin(time * c.speed + c.phase)
-        let intensity = c.base * (0.35 + 0.65 * breath)
+        let intensity = c.base * (0.35 + 0.65 * breath) * coreReveal + justLit
 
         // pulse effect: a wave travels outward, lights up cores it touches
         for (const p of pulses) {
@@ -204,6 +226,7 @@ export function FiberEndface() {
       ctx.arc(cx, cy, radius * 1.12, 0, Math.PI * 2)
       ctx.stroke()
 
+      ctx.globalAlpha = 1
       raf = requestAnimationFrame(tick)
     }
 
