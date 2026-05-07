@@ -130,6 +130,25 @@ export function HeroSection() {
         {/* Right — fiber endface centerpiece (the convergence point) */}
         <div className="relative lg:col-span-5">
           <div className="relative mx-auto aspect-square w-full max-w-[440px]">
+            {/* slow rotating tick ring — calm, no pulse */}
+            <div className="pointer-events-none absolute -inset-6 animate-slow-rotate">
+              <svg
+                viewBox="0 0 200 200"
+                className="h-full w-full"
+                aria-hidden="true"
+              >
+                <circle
+                  cx="100"
+                  cy="100"
+                  r="96"
+                  fill="none"
+                  stroke="oklch(0.66 0.13 230 / 0.18)"
+                  strokeWidth="0.4"
+                  strokeDasharray="1 4"
+                />
+              </svg>
+            </div>
+
             {/* the fiber endface — kept dark since it's a true fiber view */}
             <div className="endface-ring relative overflow-hidden rounded-full">
               <FiberEndface />
