@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next"
-import { Inter, JetBrains_Mono, Space_Grotesk, Instrument_Serif } from "next/font/google"
+import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 
@@ -18,14 +18,6 @@ const jetbrains = JetBrains_Mono({
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space",
-  display: "swap",
-})
-
-const instrumentSerif = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-  variable: "--font-serif-display",
   display: "swap",
 })
 
@@ -65,7 +57,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${jetbrains.variable} ${spaceGrotesk.variable} ${instrumentSerif.variable} bg-background`}
+      className={`${inter.variable} ${jetbrains.variable} ${spaceGrotesk.variable} bg-background`}
     >
       <body className="font-sans antialiased bg-background text-foreground">
         {children}

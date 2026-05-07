@@ -25,12 +25,11 @@
   --secondary-foreground: oklch(0.18 0.025 250);
   --muted: oklch(0.94 0.006 240);
   --muted-foreground: oklch(0.45 0.015 250);
-  --accent: oklch(0.62 0.15 45);                  /* warm terracotta — editorial italics */
+  --accent: oklch(0.66 0.13 230);
   --accent-foreground: oklch(1 0 0);
   --destructive: oklch(0.55 0.22 27);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.88 0.005 240);
-  --rule: oklch(0.78 0.012 250);                   /* hairline rule for editorial sections */
   --input: oklch(0.92 0.005 240);
   --ring: oklch(0.66 0.13 230);
   --chart-1: oklch(0.66 0.13 230);
@@ -83,7 +82,6 @@
   --font-sans: var(--font-inter), 'Inter Fallback', ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), 'JetBrains Mono Fallback', ui-monospace, monospace;
   --font-display: var(--font-space), 'Space Grotesk Fallback', ui-sans-serif, sans-serif;
-  --font-serif: var(--font-serif-display), 'Instrument Serif Fallback', ui-serif, serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -101,7 +99,6 @@
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
-  --color-rule: var(--rule);
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-chart-1: var(--chart-1);
@@ -412,9 +409,9 @@
   background-image: linear-gradient(
     100deg,
     oklch(0.66 0.13 230) 0%,
-    oklch(0.66 0.13 230) 38%,
-    oklch(0.85 0.10 210) 50%,
-    oklch(0.66 0.13 230) 62%,
+    oklch(0.66 0.13 230) 35%,
+    oklch(0.95 0.06 200) 50%,
+    oklch(0.66 0.13 230) 65%,
     oklch(0.66 0.13 230) 100%
   );
   background-size: 200% 100%;
@@ -423,7 +420,8 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  animation: light-sweep 9s ease-in-out 0.8s infinite;
+  animation: light-sweep 4s ease-in-out 0.6s infinite;
+  text-shadow: 0 0 30px oklch(0.66 0.13 230 / 0.45);
 }
 
 /* Strand underline that runs beneath a word — a tiny SVG-style line
@@ -462,64 +460,11 @@
   border-radius: 2px;
 }
 
-/* =========================================================
-   Editorial utilities — used by Stats / Projects / Partners /
-   Contact / Footer to deliver the "journal" voice.
-   ========================================================= */
-
-/* Subtle paper grain — applied as a low-opacity overlay */
-.paper-texture {
-  position: relative;
+/* Pulsing convergence ring used at the endface entry point */
+@keyframes convergence {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50%      { transform: scale(1.08); opacity: 1; }
 }
-.paper-texture::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.35;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='3'/%3E%3CfeColorMatrix values='0 0 0 0 0.05  0 0 0 0 0.07  0 0 0 0 0.11  0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-/* Folio — small caps numbering label used in editorial sections */
-.folio {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-
-/* Eyebrow — small label above section titles */
-.eyebrow {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-}
-
-/* Tabular — for monospaced numerals */
-.tabular {
-  font-feature-settings: "tnum" 1, "lnum" 1;
-  font-variant-numeric: tabular-nums;
-}
-
-/* Double rule (top + bottom hairline) for section dividers */
-.rule-double {
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  padding-block: 0.65rem;
-}
-
-/* Editorial duotone for project images — warm sepia tone */
-.duotone-warm {
-  filter: grayscale(100%) sepia(28%) contrast(1.03) brightness(0.97);
-}
-
-/* Italic text inside font-display gets the serif treatment */
-.font-display em,
-.font-display .italic,
-.italic.font-display {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 400;
+.animate-convergence {
+  animation: convergence 3s ease-in-out infinite;
 }
