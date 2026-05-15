@@ -1,0 +1,128 @@
+[
+  {
+    "file": "editorial-engineer.jpg",
+    "url": "https://res.cloudinary.com/dcpmxmrf7/image/upload/v1778851378/fibercity/editorial-engineer.jpg",
+    "public_id": "fibercity/editorial-engineer",
+    "width": 1024,
+    "height": 1024,
+    "format": "jpg",
+    "bytes": 87376
+  },
+  {
+    "file": "editorial-hero.jpg",
+    "url": "https://res.cloudinary.com/dcpmxmrf7/image/upload/v1778851379/fibercity/editorial-hero.jpg",
+    "public_id": "fibercity/editorial-hero",
+    "width": 1024,
+    "height": 1024,
+    "format": "jpg",
+    "bytes": 129691
+  },
+  {
+    "file": "engineer.jpg",
+    "url": "https://res.cloudinary.com/dcpmxmrf7/image/upload/v1778851380/fibercity/engineer.jpg",
+    "public_id": "fibercity/engineer",
+    "width": 1024,
+    "height": 1024,
+    "format": "jpg",
+    "bytes": 106286
+  },
+  {
+    "file": "fiber-bundle-light.jpg",
+    "url": "https://res.cloudinary.com/dcpmxmrf7/image/upload/v1778851381/fibercity/fiber-bundle-light.jpg",
+    "public_id": "fibercity/fiber-bundle-light",
+    "width": 1024,
+    "height": 1024,
+    "format": "jpg",
+    "bytes": 61891
+  },
+  {
+    "file": "fiber-strand-macro.jpg",
+    "url": "https://res.cloudinary.com/dcpmxmrf7/image/upload/v1778851382/fibercity/fiber-strand-macro.jpg",
+    "public_id": "fibercity/fiber-strand-macro",
+    "width": 1024,
+    "height": 1024,
+    "format": "jpg",
+    "bytes": 82287
+  },
+  {
+    "file": "glass-detail.jpg",
+    "url": "https://res.cloudinary.com/dcpmxmrf7/image/upload/v1778851383/fibercity/glass-detail.jpg",
+    "public_id": "fibercity/glass-detail",
+    "width": 1024,
+    "height": 1024,
+    "format": "jpg",
+    "bytes": 41575
+  },
+  {
+    "file": "glass-strands.jpg",
+    "url": "https://res.cloudinary.com/dcpmxmrf7/image/upload/v1778851384/fibercity/glass-strands.jpg",
+    "public_id": "fibercity/glass-strands",
+    "width": 1024,
+    "height": 1024,
+    "format": "jpg",
+    "bytes": 35616
+  },
+  {
+    "file": "hero-fiber.jpg",
+    "url": "https://res.cloudinary.com/dcpmxmrf7/image/upload/v1778851385/fibercity/hero-fiber.jpg",
+    "public_id": "fibercity/hero-fiber",
+    "width": 1024,
+    "height": 1024,
+    "format": "jpg",
+    "bytes": 70858
+  },
+  {
+    "file": "project-1.jpg",
+    "url": "https://res.cloudinary.com/dcpmxmrf7/image/upload/v1778851386/fibercity/project-1.jpg",
+    "public_id": "fibercity/project-1",
+    "width": 1024,
+    "height": 1024,
+    "format": "jpg",
+    "bytes": 183967
+  },
+  {
+    "file": "project-2.jpg",
+    "url": "https://res.cloudinary.com/dcpmxmrf7/image/upload/v1778851388/fibercity/project-2.jpg",
+    "public_id": "fibercity/project-2",
+    "width": 1024,
+    "height": 1024,
+    "format": "jpg",
+    "bytes": 239883
+  },
+  {
+    "file": "project-3.jpg",
+    "url": "https://res.cloudinary.com/dcpmxmrf7/image/upload/v1778851390/fibercity/project-3.jpg",
+    "public_id": "fibercity/project-3",
+    "width": 1024,
+    "height": 1024,
+    "format": "jpg",
+    "bytes": 120968
+  },
+  {
+    "file": "project-4.jpg",
+    "url": "https://res.cloudinary.com/dcpmxmrf7/image/upload/v1778851391/fibercity/project-4.jpg",
+    "public_id": "fibercity/project-4",
+    "width": 1024,
+    "height": 1024,
+    "format": "jpg",
+    "bytes": 130340
+  },
+  {
+    "file": "project-5.jpg",
+    "url": "https://res.cloudinary.com/dcpmxmrf7/image/upload/v1778851392/fibercity/project-5.jpg",
+    "public_id": "fibercity/project-5",
+    "width": 1024,
+    "height": 1024,
+    "format": "jpg",
+    "bytes": 67663
+  },
+  {
+    "file": "project-6.jpg",
+    "url": "https://res.cloudinary.com/dcpmxmrf7/image/upload/v1778851393/fibercity/project-6.jpg",
+    "public_id": "fibercity/project-6",
+    "width": 1024,
+    "height": 1024,
+    "format": "jpg",
+    "bytes": 233855
+  }
+]
