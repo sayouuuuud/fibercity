@@ -14,7 +14,7 @@ begin
   return new;
 end $$;
  
--- ---------- profiles (mirrors auth.users) ----------
+-- ---------- profiles (mirrors auth.users) ---------
 create table if not exists public.profiles (
   id uuid primary key references auth.users(id) on delete cascade,
   email text not null,

@@ -15,6 +15,7 @@ declare global {
 function resolveDbPath(): string {
   const env = process.env.FIBER_CITY_DB_PATH
   if (env) return resolve(env)
+  if (process.env.VERCEL) return resolve("/tmp", "fibercity.db")
   return resolve(process.cwd(), "data", "fibercity.db")
 }
 
