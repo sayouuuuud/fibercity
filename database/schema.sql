@@ -1,8 +1,8 @@
--- =========================================================================
+-- ========================================================================
 -- Fiber City — Supabase schema
 -- Run this SQL in the Supabase SQL editor (or psql) on a fresh project.
 -- Idempotent enough to re-run safely except for seed inserts.
--- =========================================================================
+-- ========================================================================
  
 create extension if not exists "pgcrypto";
  
