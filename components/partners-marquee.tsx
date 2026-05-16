@@ -29,8 +29,8 @@ export function PartnersMarquee({ items }: { items: PartnerDTO[] }) {
       </div>
 
       <div className="relative overflow-hidden py-10 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
-        <div className="flex w-max animate-marquee items-center">
-          {[...partners, ...partners].map((p, i) => (
+        <div className="flex w-max animate-marquee items-center hover:[animation-play-state:paused]">
+          {[...partners, ...partners, ...partners, ...partners].map((p, i) => (
             <div key={`${p.id}-${i}`} className="group flex shrink-0 items-center gap-6 px-10">
               <div className="flex flex-col">
                 <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-primary/80">{p.type}</span>

@@ -3,6 +3,14 @@ import type Database from "better-sqlite3"
 // SQLite DDL — all bilingual content fields use *_en / *_ar suffixes.
 // Tables stay flat for simple JSON serialisation back to the UI layer.
 export const SCHEMA_DDL = `
+CREATE TABLE IF NOT EXISTS admins (
+  id TEXT PRIMARY KEY,
+  email TEXT NOT NULL UNIQUE,
+  password_hash TEXT NOT NULL,
+  role TEXT NOT NULL DEFAULT 'admin',
+  created_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+
 CREATE TABLE IF NOT EXISTS works (
   id TEXT PRIMARY KEY,
   slug TEXT NOT NULL UNIQUE,

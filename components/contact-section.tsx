@@ -164,6 +164,7 @@ export function ContactSection() {
                         name="message"
                         rows={5}
                         required
+                        suppressHydrationWarning
                         placeholder={t.contact.placeholderMessage}
                         className="mt-2 w-full border-0 border-b border-foreground/30 bg-transparent px-0 py-2 text-[15px] leading-relaxed text-foreground placeholder:text-muted-foreground/70 focus:border-foreground focus:outline-none"
                       />
@@ -222,6 +223,7 @@ function Field({
         type={type}
         placeholder={placeholder}
         required={required}
+        suppressHydrationWarning
         className="mt-2 w-full border-0 border-b border-foreground/30 bg-transparent px-0 py-2 text-[15px] text-foreground placeholder:text-muted-foreground/70 focus:border-foreground focus:outline-none"
       />
     </div>

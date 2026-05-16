@@ -49,6 +49,7 @@ type AdminSection =
   | "messages"
   | "analytics"
   | "settings"
+  | "admins"
 
 type FetchState<T> = { data: T | null; loading: boolean; error: string | null }
 
@@ -103,6 +104,7 @@ export function AdminDashboard() {
       { id: "messages", label: t.admin.messages, icon: Inbox },
       { id: "analytics", label: t.admin.analytics, icon: BarChart3 },
       { id: "settings", label: t.admin.settings, icon: Settings },
+      { id: "admins", label: "Admins", icon: Users },
     ],
     [t],
   )
@@ -217,6 +219,7 @@ export function AdminDashboard() {
             {activeSection === "messages" && <MessagesManager query={query} />}
             {activeSection === "analytics" && <AnalyticsManager />}
             {activeSection === "settings" && <SettingsManager />}
+            {activeSection === "admins" && <AdminsManager />}
           </div>
         </main>
       </div>
@@ -465,11 +468,11 @@ function RecentList({
 
 function WorksManager({ query }: { query: string }) {
   const { t } = useLanguage()
-  const { data, loading, error, reload } = useFetch<{ works: WorkDTO[] }>("/api/works?status=all")
+  const { data, loading, error, reload } = useFetch<WorkDTO[]>("/api/works?status=all")
   if (loading) return <SkeletonGrid />
   if (error) return <ErrorPanel message={error} onRetry={reload} />
   if (!data) return null
-  const items = data.works.filter((w) => !query || w.title.toLowerCase().includes(query.toLowerCase()))
+  const items = data.filter((w) => !query || w.title.toLowerCase().includes(query.toLowerCase()))
   return (
     <CollectionTable
       title={t.admin.works}
@@ -488,11 +491,11 @@ function WorksManager({ query }: { query: string }) {
 
 function NewsManager({ query }: { query: string }) {
   const { t } = useLanguage()
-  const { data, loading, error, reload } = useFetch<{ news: NewsDTO[] }>("/api/news?status=all")
+  const { data, loading, error, reload } = useFetch<NewsDTO[]>("/api/news?status=all")
   if (loading) return <SkeletonGrid />
   if (error) return <ErrorPanel message={error} onRetry={reload} />
   if (!data) return null
-  const items = data.news.filter((n) => !query || n.title.toLowerCase().includes(query.toLowerCase()))
+  const items = data.filter((n) => !query || n.title.toLowerCase().includes(query.toLowerCase()))
   return (
     <CollectionTable
       title={t.admin.news}
@@ -511,11 +514,11 @@ function NewsManager({ query }: { query: string }) {
 
 function CustomersManager({ query }: { query: string }) {
   const { t } = useLanguage()
-  const { data, loading, error, reload } = useFetch<{ customers: CustomerDTO[] }>("/api/customers?status=all")
+  const { data, loading, error, reload } = useFetch<CustomerDTO[]>("/api/customers?status=all")
   if (loading) return <SkeletonGrid />
   if (error) return <ErrorPanel message={error} onRetry={reload} />
   if (!data) return null
-  const items = data.customers.filter((c) => !query || c.name.toLowerCase().includes(query.toLowerCase()))
+  const items = data.filter((c) => !query || c.name.toLowerCase().includes(query.toLowerCase()))
   return (
     <CollectionTable
       title={t.admin.customers}
@@ -532,11 +535,11 @@ function CustomersManager({ query }: { query: string }) {
 
 function PartnersManager({ query }: { query: string }) {
   const { t } = useLanguage()
-  const { data, loading, error, reload } = useFetch<{ partners: PartnerDTO[] }>("/api/partners?status=all")
+  const { data, loading, error, reload } = useFetch<PartnerDTO[]>("/api/partners?status=all")
   if (loading) return <SkeletonGrid />
   if (error) return <ErrorPanel message={error} onRetry={reload} />
   if (!data) return null
-  const items = data.partners.filter((p) => !query || p.name.toLowerCase().includes(query.toLowerCase()))
+  const items = data.filter((p) => !query || p.name.toLowerCase().includes(query.toLowerCase()))
   return (
     <CollectionTable
       title={t.admin.partners}
@@ -552,11 +555,11 @@ function PartnersManager({ query }: { query: string }) {
 
 function ServicesManager({ query }: { query: string }) {
   const { t } = useLanguage()
-  const { data, loading, error, reload } = useFetch<{ services: ServiceDTO[] }>("/api/services?status=all")
+  const { data, loading, error, reload } = useFetch<ServiceDTO[]>("/api/services?status=all")
   if (loading) return <SkeletonGrid />
   if (error) return <ErrorPanel message={error} onRetry={reload} />
   if (!data) return null
-  const items = data.services.filter((s) => !query || s.title.toLowerCase().includes(query.toLowerCase()))
+  const items = data.filter((s) => !query || s.title.toLowerCase().includes(query.toLowerCase()))
   return (
     <CollectionTable
       title={t.admin.services}
@@ -572,11 +575,11 @@ function ServicesManager({ query }: { query: string }) {
 
 function StatsManager({ query }: { query: string }) {
   const { t } = useLanguage()
-  const { data, loading, error, reload } = useFetch<{ stats: StatDTO[] }>("/api/stats")
+  const { data, loading, error, reload } = useFetch<StatDTO[]>("/api/stats")
   if (loading) return <SkeletonGrid />
   if (error) return <ErrorPanel message={error} onRetry={reload} />
   if (!data) return null
-  const items = data.stats.filter((s) => !query || s.label.toLowerCase().includes(query.toLowerCase()))
+  const items = data.filter((s) => !query || s.label.toLowerCase().includes(query.toLowerCase()))
   return (
     <CollectionTable
       title={t.admin.stats}
@@ -591,7 +594,7 @@ function StatsManager({ query }: { query: string }) {
 
 function MessagesManager({ query }: { query: string }) {
   const { t, locale } = useLanguage()
-  const { data, loading, error, reload } = useFetch<{ messages: ContactMessageRecord[] }>(
+  const { data, loading, error, reload } = useFetch<ContactMessageRecord[]>(
     "/api/messages?status=all",
   )
   const dateLocale = locale === "ar" ? "ar-EG" : "en"
@@ -606,7 +609,7 @@ function MessagesManager({ query }: { query: string }) {
   if (loading) return <SkeletonGrid />
   if (error) return <ErrorPanel message={error} onRetry={reload} />
   if (!data) return null
-  const items = data.messages.filter(
+  const items = data.filter(
     (m) =>
       !query ||
       m.name.toLowerCase().includes(query.toLowerCase()) ||
@@ -750,6 +753,111 @@ function AnalyticsManager() {
               </li>
             ))}
           </ul>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function AdminsManager() {
+  const { data, loading, error, reload } = useFetch<any[]>("/api/admins")
+  const [formData, setFormData] = useState({ email: "", password: "", role: "admin" })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [message, setMessage] = useState("")
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setMessage("")
+    
+    const res = await fetch("/api/admins", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData)
+    })
+    
+    const result = await res.json()
+    setIsSubmitting(false)
+    
+    if (result.error) {
+      setMessage(result.error)
+    } else {
+      setMessage("Admin saved successfully.")
+      setFormData({ email: "", password: "", role: "admin" })
+      reload()
+    }
+  }
+
+  const handleDelete = async (id: string) => {
+    if (!confirm("Are you sure you want to delete this admin?")) return
+    const res = await fetch("/api/admins?id=" + id, { method: "DELETE" })
+    const result = await res.json()
+    if (result.error) alert(result.error)
+    else reload()
+  }
+
+  if (loading) return <SkeletonGrid />
+  if (error) return <ErrorPanel message={error} onRetry={reload} />
+
+  return (
+    <div className="space-y-6">
+      <div className="rounded-[1.75rem] border border-border bg-card/90 p-6 shadow-sm dark:bg-card">
+        <h2 className="text-xl font-display mb-4">Manage Admins</h2>
+        {message && <div className="mb-4 text-sm text-primary">{message}</div>}
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-sm mb-6">
+          <input 
+            type="email" 
+            placeholder="Email address" 
+            required 
+            value={formData.email}
+            onChange={e => setFormData({...formData, email: e.target.value})}
+            className="rounded-xl border border-border bg-card px-3 py-2 text-sm focus:border-primary focus:outline-none"
+          />
+          <input 
+            type="password" 
+            placeholder="Password (min 6 chars)" 
+            value={formData.password}
+            onChange={e => setFormData({...formData, password: e.target.value})}
+            className="rounded-xl border border-border bg-card px-3 py-2 text-sm focus:border-primary focus:outline-none"
+          />
+          <button 
+            type="submit" 
+            disabled={isSubmitting}
+            className="rounded-xl bg-primary px-4 py-2 text-primary-foreground text-sm font-medium hover:brightness-110 disabled:opacity-50"
+          >
+            {isSubmitting ? "Saving..." : "Add / Update Admin"}
+          </button>
+          <p className="text-xs text-muted-foreground mt-1">If email exists, the password will be updated.</p>
+        </form>
+
+        <div className="overflow-hidden rounded-xl border border-border">
+          <table className="w-full text-sm text-left">
+            <thead className="bg-secondary/40">
+              <tr>
+                <th className="px-4 py-3">Email</th>
+                <th className="px-4 py-3">Role</th>
+                <th className="px-4 py-3">Created</th>
+                <th className="px-4 py-3">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data?.map((admin: any) => (
+                <tr key={admin.id} className="border-t border-border">
+                  <td className="px-4 py-3 font-medium">{admin.email}</td>
+                  <td className="px-4 py-3">{admin.role}</td>
+                  <td className="px-4 py-3 text-muted-foreground">{new Date(admin.created_at).toLocaleDateString()}</td>
+                  <td className="px-4 py-3">
+                    <button 
+                      onClick={() => handleDelete(admin.id)}
+                      className="text-red-500 hover:text-red-700 font-medium"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

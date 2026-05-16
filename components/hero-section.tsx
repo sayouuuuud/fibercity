@@ -139,10 +139,10 @@ export function HeroSection() {
                 const angle = (i / 60) * Math.PI * 2
                 const inner = i % 5 === 0 ? 44.5 : 46
                 const outer = 47.5
-                const x1 = 50 + Math.cos(angle) * inner
-                const y1 = 50 + Math.sin(angle) * inner
-                const x2 = 50 + Math.cos(angle) * outer
-                const y2 = 50 + Math.sin(angle) * outer
+                const x1 = +(50 + Math.cos(angle) * inner).toFixed(4)
+                const y1 = +(50 + Math.sin(angle) * inner).toFixed(4)
+                const x2 = +(50 + Math.cos(angle) * outer).toFixed(4)
+                const y2 = +(50 + Math.sin(angle) * outer).toFixed(4)
                 return (
                   <line
                     key={i}
@@ -199,8 +199,8 @@ export function HeroSection() {
 
       <div className="relative z-10 border-t border-border bg-card/60 backdrop-blur">
         <div className="overflow-hidden">
-          <div className="flex w-max animate-ticker items-center gap-10 whitespace-nowrap py-4 font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
-            {Array.from({ length: 2 }).map((_, dup) => (
+          <div className="flex w-max animate-ticker items-center gap-10 whitespace-nowrap py-4 font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground hover:[animation-play-state:paused]">
+            {Array.from({ length: 4 }).map((_, dup) => (
               <div key={dup} className="flex items-center gap-10">
                 <TickerItem icon={<Waves className="h-3 w-3 text-primary" />} label="OTDR" value="OK · 0.18 dB/km" />
                 <TickerDot />
