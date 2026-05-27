@@ -17,9 +17,9 @@ export function AboutSection() {
           {t.about.sectionLabel}
         </div>
 
-        <div className="mt-8 grid gap-12 lg:grid-cols-12 lg:gap-12">
-          <div className="lg:col-span-7">
-            <h2 className="font-display text-4xl font-semibold leading-[1] tracking-tight text-balance sm:text-5xl lg:text-[4.25rem]">
+        <div className="mt-8 grid gap-12 lg:grid-cols-12 lg:gap-8">
+          <div className="lg:col-span-6">
+            <h2 className="font-display text-4xl font-semibold leading-[1] tracking-tight text-balance sm:text-5xl lg:text-[3.5rem]">
               {t.about.heading} <span className="text-primary">{t.about.headingHighlight}</span> {t.about.headingTail}
             </h2>
 
@@ -60,8 +60,8 @@ export function AboutSection() {
             </div>
           </div>
 
-          <div className="lg:col-span-5">
-            <div className="glass-tint relative overflow-hidden rounded-3xl p-6 sm:p-8">
+          <div className="lg:col-span-6">
+            <div className="glass-tint relative h-full overflow-hidden rounded-3xl p-6 sm:p-8">
               <svg
                 aria-hidden="true"
                 viewBox="0 0 400 400"
@@ -102,18 +102,18 @@ export function AboutSection() {
                 ))}
               </ul>
 
-              <div className="relative mt-8 grid grid-cols-2 gap-4 border-t border-foreground/10 pt-6 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-                <div>
+              <div className="relative mt-8 grid grid-cols-2 gap-6 border-t border-foreground/10 pt-6">
+                <div className="rounded-xl bg-card/50 p-4">
                   <div className="font-display text-2xl font-semibold tracking-tight text-foreground">
                     {t.about.isoLabel}
                   </div>
-                  <div className="mt-1">{t.about.isoValue}</div>
+                  <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">{t.about.isoValue}</div>
                 </div>
-                <div>
+                <div className="rounded-xl bg-card/50 p-4">
                   <div className="font-display text-2xl font-semibold tracking-tight text-foreground">
                     {t.about.hqLabel}
                   </div>
-                  <div className="mt-1">{t.about.hqValue}</div>
+                  <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">{t.about.hqValue}</div>
                 </div>
               </div>
             </div>

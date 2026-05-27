@@ -65,8 +65,7 @@ export function ServicesSection({ items }: { items: ServiceDTO[] }) {
               <article
                 key={s.id}
                 className={
-                  "group glass-soft relative flex flex-col rounded-3xl p-6 transition duration-300 hover:bg-card/90 dark:hover:bg-card sm:p-7 " +
-                  (idx === 0 ? "lg:col-span-2" : "")
+                  "group glass-soft relative flex flex-col rounded-3xl p-6 transition duration-300 hover:bg-card/90 dark:hover:bg-card sm:p-7"
                 }
               >
                 <div className="flex items-start justify-between">
